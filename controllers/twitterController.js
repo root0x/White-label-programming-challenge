@@ -14,11 +14,15 @@ const twitterService = new TwitterService({
 
 export const test = async(req, res, next) =>
 {
-    var params = {screen_name: 'nodejs'};
+    var params = {
+        screen_name: 'nothing',
+        exclude_replies: true,
+        include_rts: false
+    };
     let tweets = {};
     try 
     {
-        tweets = await twitterService.userTimeline('statuses/user_timeline', params);
+        tweets = await twitterService.userTimeline(params);
         res.status(200).json(tweets);
     }
     catch(e)
