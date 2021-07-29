@@ -42,7 +42,7 @@ export default class TwitterService
                     imageUrl: o.extended_entities.media[0].media_url_https,
                     ...(o.extended_entities.media[0].type === 'video' ? {
                         video : {
-                            url : o.extended_entities.media[0].video_info.variants.sort((a,b) => b.bitrate - a.bitrate)[0]
+                            ...(o.extended_entities.media[0].video_info.variants.sort((a,b) => b.bitrate - a.bitrate)[0])
                         }
                     } : '' )
                 }

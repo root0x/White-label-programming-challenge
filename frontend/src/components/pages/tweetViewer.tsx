@@ -1,25 +1,186 @@
-import React from 'react';
-import { Grid, GridItem } from '@chakra-ui/layout';
+import React, {useEffect, useRef, useState} from 'react';
+import { Grid, GridItem, Heading } from '@chakra-ui/layout';
 import Tweet from '../tweet';
 
 
 
-const tweetViewer = () => (
-    <Grid 
-        templateColumns='repeat(auto-fill, minmax(250px,1fr))'
-        gridGap='10px'
-        gridAutoRows='200px'
-    >
-        {data.map((tweet,index) => (
-            <h1>{tweet.text}</h1>
-        ))}
+const tweetViewer = () => {
+    
 
-    </Grid>
-)
+    return (
+        <>
+        <Heading textAlign='center' size='4xl' padding='50px'>Latest Tweets</Heading>
+            <Grid 
+                templateColumns='repeat(auto-fill, minmax(400px,1fr))'
+                gridGap='40px'
+                gridAutoRows='40px'
+            
+            >
+                {data.map((tweet,index) => (
+                <Tweet key={index} tweet={tweet} autoRows={40}/>
+                ))}
+
+            </Grid>
+        </>
+    )
+}
 
 export default tweetViewer;
 
 const data = [
+    {
+      created_at: "Thu Jul 29 21:03:33 +0000 2021",
+      id: 1420852517790003200,
+      text: "\"hey\" - @misticJK #VCT https://t.co/0XUEhky9hi",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420852443341107207/pu/img/oEATnVZF6OxQpDK0.jpg",
+        video: {
+          content_type: "application/x-mpegURL",
+          url: "https://video.twimg.com/ext_tw_video/1420852443341107207/pu/pl/C6QTEJ8bWSMJVH4R.m3u8?tag=12&container=fmp4"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 21:01:57 +0000 2021",
+      id: 1420852116139090000,
+      text: "RT @respawnbyrazer: Immerse all your senses in the game with RESPAWN gum’s huge flavor — your perfect companion for main missions and side…",
+      user: "Razer"
+    },
+    {
+      created_at: "Thu Jul 29 20:35:12 +0000 2021",
+      id: 1420845385216577500,
+      text: "Another banger matchup ✅\n\nWe take the win on Bind to bring the series to a decider map. We're jetting off to Haven… https://t.co/5BvCGDOP32",
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 20:31:07 +0000 2021",
+      id: 1420844359038247000,
+      text: "1-1 for Fnatic Rising, taking us to game 3! #FNCWIN #NLC https://t.co/MczYhiuU6m",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420844220148064257/pu/img/H026NytPqRKGWxme.jpg",
+        video: {
+          bitrate: 2176000,
+          content_type: "video/mp4",
+          url: "https://video.twimg.com/ext_tw_video/1420844220148064257/pu/vid/1280x720/BJB-6NsH_VV6GbGc.mp4?tag=12"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 20:30:07 +0000 2021",
+      id: 1420844106146791400,
+      text: "RT @dailytechnewssh: We’re live! Join us now for today’s DTNS with guest co-host Patrick Norton @patricknorton https://t.co/lT98omlgWz",
+      user: "patricknorton"
+    },
+    {
+      created_at: "Thu Jul 29 20:27:53 +0000 2021",
+      id: 1420843542436589600,
+      text: "Bush diff #NLC https://t.co/xXAsNfSux2",
+      media: {
+        type: "photo",
+        imageUrl: "https://pbs.twimg.com/media/E7fZmu4WUAkMDj0.png"
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 20:25:25 +0000 2021",
+      id: 1420842922090582000,
+      text: "Another day, another @misticJK CLUTCH! 🔥 #VCT https://t.co/SCKMOzdoko",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420842820588515328/pu/img/yU8KgRJ9pYE8nl47.jpg",
+        video: {
+          bitrate: 2176000,
+          content_type: "video/mp4",
+          url: "https://video.twimg.com/ext_tw_video/1420842820588515328/pu/vid/1280x720/m2icpyNUaPA-7zot.mp4?tag=12"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 20:13:16 +0000 2021",
+      id: 1420839864686182400,
+      text: "* slaps twice *\nThis bad boy can fit so much tech in it https://t.co/WwDcHBHJyt",
+      media: {
+        type: "photo",
+        imageUrl: "https://pbs.twimg.com/media/E7fWRKJVcAEEQiQ.jpg"
+      },
+      user: "LinusTech"
+    },
+    {
+      created_at: "Thu Jul 29 20:08:59 +0000 2021",
+      id: 1420838788763463700,
+      text: "AYOOOO first blood to Fnatic Rising #NLC https://t.co/X6yxLyBoA5",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420838546789781506/pu/img/vqO8uwi4OU9ST4f6.jpg",
+        video: {
+          bitrate: 832000,
+          content_type: "video/mp4",
+          url: "https://video.twimg.com/ext_tw_video/1420838546789781506/pu/vid/640x360/A1q3gD3-liAUI2fV.mp4?tag=12"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 20:05:56 +0000 2021",
+      id: 1420838018521387000,
+      text: "Thank you for the insight 😳 #NLC https://t.co/KonQGvZLZi",
+      media: {
+        type: "photo",
+        imageUrl: "https://pbs.twimg.com/media/E7fUYpOXsAY1js5.jpg"
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 19:52:42 +0000 2021",
+      id: 1420834688105599000,
+      text: "ALL of the util kills for @domaVALORANT! 👀 #VCT https://t.co/cEO8M66PH6",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420834584539897865/pu/img/Vt7-NLVpW0qlnzMk.jpg",
+        video: {
+          bitrate: 256000,
+          content_type: "video/mp4",
+          url: "https://video.twimg.com/ext_tw_video/1420834584539897865/pu/vid/480x270/M4gFcFQBK_kSoDlk.mp4?tag=12"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 19:49:00 +0000 2021",
+      id: 1420833758312374300,
+      text: ".@OfficialBoaster wins THOSE! 🔥 #VCT https://t.co/rCeTSRI7X9",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420833628980920325/pu/img/LUi0EksQ0PzMQq6N.jpg",
+        video: {
+          bitrate: 2176000,
+          content_type: "video/mp4",
+          url: "https://video.twimg.com/ext_tw_video/1420833628980920325/pu/vid/1280x720/LK6HYaelWMy0eviO.mp4?tag=12"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 19:46:33 +0000 2021",
+      id: 1420833142437470200,
+      text: "RT @Tesla: Giga Texas: 6 months ago vs this week https://t.co/CAgmIJ3wKQ",
+      media: {
+        type: "photo",
+        imageUrl: "https://pbs.twimg.com/media/E7fNWQTX0AY8osS.jpg"
+      },
+      user: "elonmusk"
+    },
+    {
+      created_at: "Thu Jul 29 19:39:27 +0000 2021",
+      id: 1420831357194887200,
+      text: "It is interesting to consider what things would have looked like if ISDN had been ubiquitous and the 16 bit console… https://t.co/AMwaoT5iSz",
+      user: "ID_AA_Carmack"
+    },
     {
       created_at: "Thu Jul 29 19:21:35 +0000 2021",
       id: 1420826859277799400,
@@ -63,122 +224,5 @@ const data = [
         imageUrl: "https://pbs.twimg.com/media/E7e3EH6XoAImc5u.jpg"
       },
       user: "elgato"
-    },
-    {
-      created_at: "Thu Jul 29 18:17:42 +0000 2021",
-      id: 1420810781923348500,
-      text: "Spain without the S 💔\n\nWe lose in OT on Ascent and @GiantsGaming take the win. We're knocked down to the lower brac… https://t.co/dqQKWfVmyd",
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 18:13:00 +0000 2021",
-      id: 1420809598265561000,
-      text: "nice. https://t.co/J73TEVMSEP",
-      media: {
-        type: "photo",
-        imageUrl: "https://pbs.twimg.com/media/E7ejCi-VIAQlKe3.jpg"
-      },
-      user: "LinusTech"
-    },
-    {
-      created_at: "Thu Jul 29 18:09:18 +0000 2021",
-      id: 1420808666329096200,
-      text: "AAAAAAAAAAHHH @misticJK!!!!! 😳 https://t.co/qX6PDmPlBM",
-      media: {
-        type: "video",
-        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420808540969635840/pu/img/pd4NQtEuOvhfm07G.jpg",
-        video: {
-          url: {
-            bitrate: 2176000,
-            content_type: "video/mp4",
-            url: "https://video.twimg.com/ext_tw_video/1420808540969635840/pu/vid/1280x720/rKXTXrVHqMSYzCfH.mp4?tag=12"
-          }
-        }
-      },
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 18:06:43 +0000 2021",
-      id: 1420808018573279200,
-      text: "GET YOUR BOASTEEEES!! #VCT 🔥 @OfficialBoaster https://t.co/QxJKb8m8Oh",
-      media: {
-        type: "video",
-        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420807865569271815/pu/img/LsN85u-m4xBtOStm.jpg",
-        video: {
-          url: {
-            bitrate: 256000,
-            content_type: "video/mp4",
-            url: "https://video.twimg.com/ext_tw_video/1420807865569271815/pu/vid/480x270/gvwXYqeoTnC60sgR.mp4?tag=12"
-          }
-        }
-      },
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 18:00:57 +0000 2021",
-      id: 1420806565045719000,
-      text: "⚡️ SPAM ⚡️ THIS ⚡️ STATIC ⚡️ TO ⚡️ HELP ⚡️ FNATIC ⚡️ https://t.co/QuTWPXInrn",
-      media: {
-        type: "photo",
-        imageUrl: "https://pbs.twimg.com/media/E7e39eEX0AUl9Z5.png"
-      },
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 18:00:27 +0000 2021",
-      id: 1420806441280196600,
-      text: "I love giving shoutouts!! Moon Bagel patrons get a shoutout right on the show from me when you sign up on the Threa… https://t.co/N5rFBErVhR",
-      user: "Snubs"
-    },
-    {
-      created_at: "Thu Jul 29 17:53:43 +0000 2021",
-      id: 1420804746588328000,
-      text: "OVERTIME 🤝 FNATIC #VCT",
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 17:37:56 +0000 2021",
-      id: 1420800775953989600,
-      text: "SHUT. DOWN. 🔥 #VCT https://t.co/2rqXsCfbip",
-      media: {
-        type: "video",
-        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420800635499335685/pu/img/YO0JZ0ZWIFhOqu--.jpg",
-        video: {
-          url: {
-            content_type: "application/x-mpegURL",
-            url: "https://video.twimg.com/ext_tw_video/1420800635499335685/pu/pl/_FyiLx4UGoN_9N8Z.m3u8?tag=12&container=fmp4"
-          }
-        }
-      },
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 17:36:47 +0000 2021",
-      id: 1420800485062217700,
-      text: "RT @WePlay_Esports: .@BIGCLANgg Academy closes out Overpass with a 16- scoreline over @FNATIC Rising. FNATIC Rising held on tried to make t…",
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 17:33:03 +0000 2021",
-      id: 1420799547249471500,
-      text: "RT @CameronYeager: @tomwarren @patricknorton There's also this \nhttps://t.co/1O4dnNVSOv",
-      user: "patricknorton"
-    },
-    {
-      created_at: "Thu Jul 29 17:29:24 +0000 2021",
-      id: 1420798628059308000,
-      text: "QUICKSCOPES OUT FOR @derkeps! 😳 #VCT https://t.co/ciMRRXV7Hx",
-      media: {
-        type: "video",
-        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420798475739013128/pu/img/7onGUc4jJyVzvvKo.jpg",
-        video: {
-          url: {
-            bitrate: 2176000,
-            content_type: "video/mp4",
-            url: "https://video.twimg.com/ext_tw_video/1420798475739013128/pu/vid/1280x720/fqmYtglGX_irB_3s.mp4?tag=12"
-          }
-        }
-      },
-      user: "FNATIC"
     }
-  ];
+  ]
