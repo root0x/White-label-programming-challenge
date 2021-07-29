@@ -15,9 +15,10 @@ const twitterService = new TwitterService({
 export const test = async(req, res, next) =>
 {
     var params = {
-        screen_name: 'nothing',
+        // screen_name: 'nothing',
         exclude_replies: true,
-        include_rts: false
+        // include_rts: false,
+        include_entities: true
     };
     let tweets = {};
     try 
