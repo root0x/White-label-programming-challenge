@@ -1,0 +1,27 @@
+const colors = {
+    white: '#FFFFFF',
+    black: '#000000',
+    brandGreen: '#00AF54',
+    brandGreenHover: '#1AB765',
+    deepBlue: '#312F5A',
+    teal: '#2C9BAC',
+    tealHover: '#41A5B4',
+    purple: '#A652DF',
+    darkPurple: '#512178',
+    stone: '#B5AB91',
+    lime: '#98C844',
+    softBerry: '#CB7496',
+    lightGrey: '#F1F1F1',
+    lightGrey2: '#F8F8F8',
+    lightBlue: '#00C8C8',
+    terracotta: '#C77942',
+    grey: '#57676C',
+    greyHover: '#68767B',
+    grey2: '#EEEEEE',
+    grey3: '#5C5C5C',
+    lighterBlue: '#647AA0',
+    lighterBlueHover: '#7487AA',
+    lighterBlue2: '#8D9FBF',
+};
+
+export default colors;
