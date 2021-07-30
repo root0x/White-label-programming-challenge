@@ -17,10 +17,10 @@ module.exports = {
         hot: true,
         index: '',
         historyApiFallback: true,
-        proxy: {
-            context: ['/api'],
-            target: 'http://localhost:3000',
-
+        proxy: {'/api': {
+            target :'http://localhost:3000',
+            pathRewrite: { '^/api': '' },
+        }
         },
     },
     devtool: 'source-map',

@@ -32,16 +32,15 @@ interface props
             }
         }
     }
-    autoRows: number
 }
 
-const Tweet : React.FC<props> = ({tweet, autoRows}) =>  {
+const Tweet : React.FC<props> = ({tweet}) =>  {
     
     return (
         <Flex>
             <Box
                 margin='10px'
-                // padding='20px'
+                width='100%'
                 border='1px solid lightGrey2'
                 borderRadius='5px'
                 bg='white'
