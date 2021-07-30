@@ -1,33 +1,135 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { Grid, GridItem, Heading } from '@chakra-ui/layout';
+import { Box, Heading } from '@chakra-ui/layout';
+import Masonry from 'react-masonry-css';
 import Tweet from '../tweet';
 
-
+const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1
+  };
 
 const tweetViewer = () => {
     
 
     return (
-        <>
-        <Heading textAlign='center' size='4xl' padding='50px'>Latest Tweets</Heading>
-            <Grid 
-                templateColumns='repeat(auto-fill, minmax(400px,1fr))'
-                gridGap='40px'
-                gridAutoRows='40px'
-            
-            >
+        <Box
+            bg='lightGrey'
+        >
+            <Heading textAlign='center' size='4xl' padding='50px'>Latest Tweets</Heading>
+        <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+        >
                 {data.map((tweet,index) => (
                 <Tweet key={index} tweet={tweet} autoRows={40}/>
                 ))}
 
-            </Grid>
-        </>
+        </Masonry>
+        </Box>
     )
 }
 
 export default tweetViewer;
 
 const data = [
+    {
+      created_at: "Thu Jul 29 21:33:00 +0000 2021",
+      id: 1420859930861576200,
+      text: "Impressive! Can anyone best this collection of handhelds? https://t.co/wsKLKDu0v5",
+      user: "JasonBradbury"
+    },
+    {
+      created_at: "Thu Jul 29 21:29:33 +0000 2021",
+      id: 1420859060937764900,
+      text: "He's holding on for dear life! 😳 #NLC https://t.co/PDEZwfo2U9",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420858844490739719/pu/img/h-zhYgs1nfYItYBP.jpg",
+        video: {
+          content_type: "application/x-mpegURL",
+          url: "https://video.twimg.com/ext_tw_video/1420858844490739719/pu/pl/Nwjtzhmh3W2LlhA-.m3u8?tag=12&container=fmp4"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 21:29:17 +0000 2021",
+      id: 1420858996521672700,
+      text: ".@misticJK AND CLUTCHING, NAME A BETTER COMBO 👀 #VCT https://t.co/eXoKYCxRm1",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420858908193722369/pu/img/pljEHZ_5KyuSKwtR.jpg",
+        video: {
+          bitrate: 2176000,
+          content_type: "video/mp4",
+          url: "https://video.twimg.com/ext_tw_video/1420858908193722369/pu/vid/1280x720/r-R_1_4bUKqhvW9-.mp4?tag=12"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 21:25:42 +0000 2021",
+      id: 1420858093479551000,
+      text: "BIG PLAYS FROM @just_magnum!! 👀 #VCT https://t.co/dqd8s1p7Ae",
+      media: {
+        type: "video",
+        imageUrl: "https://pbs.twimg.com/ext_tw_video_thumb/1420857860641202178/pu/img/7NxF0GeM5F194htp.jpg",
+        video: {
+          bitrate: 2176000,
+          content_type: "video/mp4",
+          url: "https://video.twimg.com/ext_tw_video/1420857860641202178/pu/vid/1280x720/h1T0PTbfqcc9l6UO.mp4?tag=12"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 21:15:18 +0000 2021",
+      id: 1420855477081153500,
+      text: "GIVE ME YOUR STRENGTH #VCT https://t.co/hdzdK6uxqw",
+      media: {
+        type: "animated_gif",
+        imageUrl: "https://pbs.twimg.com/tweet_video_thumb/E7fkZbJWUAE9Qab.jpg",
+        sizes: {
+          w: 500,
+          h: 500,
+          resize: "fit"
+        }
+      },
+      user: "FNATIC"
+    },
+    {
+      created_at: "Thu Jul 29 21:08:20 +0000 2021",
+      id: 1420853724889690000,
+      text: "I BELIEVE #VCT https://t.co/1U35J2rmp9",
+      media: {
+        type: "photo",
+        imageUrl: "https://pbs.twimg.com/media/E7fi5FlXsAEhx03.jpg",
+        sizes: {
+          w: 680,
+          h: 324,
+          resize: "fit"
+        }
+      },
+      user: "FNATIC"
+    },
     {
       created_at: "Thu Jul 29 21:03:33 +0000 2021",
       id: 1420852517790003200,
@@ -38,6 +140,11 @@ const data = [
         video: {
           content_type: "application/x-mpegURL",
           url: "https://video.twimg.com/ext_tw_video/1420852443341107207/pu/pl/C6QTEJ8bWSMJVH4R.m3u8?tag=12&container=fmp4"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
         }
       },
       user: "FNATIC"
@@ -65,6 +172,11 @@ const data = [
           bitrate: 2176000,
           content_type: "video/mp4",
           url: "https://video.twimg.com/ext_tw_video/1420844220148064257/pu/vid/1280x720/BJB-6NsH_VV6GbGc.mp4?tag=12"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
         }
       },
       user: "FNATIC"
@@ -81,7 +193,12 @@ const data = [
       text: "Bush diff #NLC https://t.co/xXAsNfSux2",
       media: {
         type: "photo",
-        imageUrl: "https://pbs.twimg.com/media/E7fZmu4WUAkMDj0.png"
+        imageUrl: "https://pbs.twimg.com/media/E7fZmu4WUAkMDj0.png",
+        sizes: {
+          w: 673,
+          h: 521,
+          resize: "fit"
+        }
       },
       user: "FNATIC"
     },
@@ -96,6 +213,11 @@ const data = [
           bitrate: 2176000,
           content_type: "video/mp4",
           url: "https://video.twimg.com/ext_tw_video/1420842820588515328/pu/vid/1280x720/m2icpyNUaPA-7zot.mp4?tag=12"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
         }
       },
       user: "FNATIC"
@@ -106,7 +228,12 @@ const data = [
       text: "* slaps twice *\nThis bad boy can fit so much tech in it https://t.co/WwDcHBHJyt",
       media: {
         type: "photo",
-        imageUrl: "https://pbs.twimg.com/media/E7fWRKJVcAEEQiQ.jpg"
+        imageUrl: "https://pbs.twimg.com/media/E7fWRKJVcAEEQiQ.jpg",
+        sizes: {
+          w: 610,
+          h: 680,
+          resize: "fit"
+        }
       },
       user: "LinusTech"
     },
@@ -121,6 +248,11 @@ const data = [
           bitrate: 832000,
           content_type: "video/mp4",
           url: "https://video.twimg.com/ext_tw_video/1420838546789781506/pu/vid/640x360/A1q3gD3-liAUI2fV.mp4?tag=12"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
         }
       },
       user: "FNATIC"
@@ -131,7 +263,12 @@ const data = [
       text: "Thank you for the insight 😳 #NLC https://t.co/KonQGvZLZi",
       media: {
         type: "photo",
-        imageUrl: "https://pbs.twimg.com/media/E7fUYpOXsAY1js5.jpg"
+        imageUrl: "https://pbs.twimg.com/media/E7fUYpOXsAY1js5.jpg",
+        sizes: {
+          w: 680,
+          h: 382,
+          resize: "fit"
+        }
       },
       user: "FNATIC"
     },
@@ -146,6 +283,11 @@ const data = [
           bitrate: 256000,
           content_type: "video/mp4",
           url: "https://video.twimg.com/ext_tw_video/1420834584539897865/pu/vid/480x270/M4gFcFQBK_kSoDlk.mp4?tag=12"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
         }
       },
       user: "FNATIC"
@@ -161,6 +303,11 @@ const data = [
           bitrate: 2176000,
           content_type: "video/mp4",
           url: "https://video.twimg.com/ext_tw_video/1420833628980920325/pu/vid/1280x720/LK6HYaelWMy0eviO.mp4?tag=12"
+        },
+        sizes: {
+          w: 680,
+          h: 383,
+          resize: "fit"
         }
       },
       user: "FNATIC"
@@ -171,58 +318,13 @@ const data = [
       text: "RT @Tesla: Giga Texas: 6 months ago vs this week https://t.co/CAgmIJ3wKQ",
       media: {
         type: "photo",
-        imageUrl: "https://pbs.twimg.com/media/E7fNWQTX0AY8osS.jpg"
+        imageUrl: "https://pbs.twimg.com/media/E7fNWQTX0AY8osS.jpg",
+        sizes: {
+          w: 383,
+          h: 680,
+          resize: "fit"
+        }
       },
       user: "elonmusk"
-    },
-    {
-      created_at: "Thu Jul 29 19:39:27 +0000 2021",
-      id: 1420831357194887200,
-      text: "It is interesting to consider what things would have looked like if ISDN had been ubiquitous and the 16 bit console… https://t.co/AMwaoT5iSz",
-      user: "ID_AA_Carmack"
-    },
-    {
-      created_at: "Thu Jul 29 19:21:35 +0000 2021",
-      id: 1420826859277799400,
-      text: "Time to regroup &amp; refocus.\n\n@TeamBDS  takes Icebox in a 13-7 victory, but we head to Bind and look to turn things a… https://t.co/aSL8gtIQf2",
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 19:01:37 +0000 2021",
-      id: 1420821832765165600,
-      text: "It's finally here! The #NEW @nanoleaf x Razer Chroma Connect Integration has arrived! Sync next-level RGB lighting… https://t.co/qAeN48wwCC",
-      user: "Razer"
-    },
-    {
-      created_at: "Thu Jul 29 18:59:48 +0000 2021",
-      id: 1420821378706677800,
-      text: "Hey folks! I'm going live now on Youtube and Twitch! Come say hi - https://t.co/G3vs2ctAO8",
-      user: "TechTeamGB"
-    },
-    {
-      created_at: "Thu Jul 29 18:59:25 +0000 2021",
-      id: 1420821278877962200,
-      text: "After an impressive split, Playoffs are here!\n\nFnatic Rising take to the rift vs TRICKED for a showdown, live NOW!",
-      user: "FNATIC"
-    },
-    {
-      created_at: "Thu Jul 29 18:53:13 +0000 2021",
-      id: 1420819718701781000,
-      text: "Completing feed system for 29 Raptor rocket engines on Super Heavy Booster https://t.co/uARWx2HYTr",
-      media: {
-        type: "photo",
-        imageUrl: "https://pbs.twimg.com/media/E7fEAKSWQAEnWtX.jpg"
-      },
-      user: "elonmusk"
-    },
-    {
-      created_at: "Thu Jul 29 18:38:31 +0000 2021",
-      id: 1420816022873981000,
-      text: "What inspired you to be a creator? 🎬\n\n📸: @matthewkheafy https://t.co/4EBFDeMG20",
-      media: {
-        type: "photo",
-        imageUrl: "https://pbs.twimg.com/media/E7e3EH6XoAImc5u.jpg"
-      },
-      user: "elgato"
     }
   ]

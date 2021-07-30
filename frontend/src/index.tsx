@@ -4,7 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme';
 
 import TweetViewer from './components/pages/tweetViewer';
-
+import './styles/masonry.css';
 
 ReactDOM.render(
     <React.StrictMode>
