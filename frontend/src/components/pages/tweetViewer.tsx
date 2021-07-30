@@ -1,18 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { Box, Heading } from '@chakra-ui/layout';
-import { useInfiniteQuery, FetchNextPageOptions, InfiniteQueryObserverResult } from 'react-query';
 import Masonry from 'react-masonry-css';
 import axios from 'axios';
 import Tweet from '../tweet';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
-import { last } from 'lodash';
-import { useAccordionDescendantsContext } from '@chakra-ui/accordion';
 
 const breakpointColumnsObj = {
     default: 4,
-    1100: 3,
-    700: 2,
-    500: 1
+    1440: 3,
+    1024: 2,
+    650: 1
   };
 
 
@@ -70,7 +67,9 @@ const tweetViewer = () => {
         <Box
             bg='lightGrey'
         >
-            <Heading textAlign='center' size='4xl' padding='50px'>Latest Tweets</Heading>
+            <Heading as='h1' textAlign='center' 
+            fontSize={{base: '2xl', md: '5xl', lg: '6xl'}} 
+            padding={['25px 0 0 15px', '50px']}>Latest Tweets</Heading>
         <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
