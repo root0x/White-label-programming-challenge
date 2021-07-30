@@ -14,12 +14,14 @@ const twitterService = new TwitterService({
 
 export const test = async(req, res, next) =>
 {
-    var params = {
-        // screen_name: 'nothing',
+
+    const params = {
+        count: 50,
         exclude_replies: true,
-        // include_rts: false,
         include_entities: true
     };
+    if(req.query.maxId)
+        params.max_id = req.query.maxId;
     let tweets = {};
     try 
     {

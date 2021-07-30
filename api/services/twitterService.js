@@ -19,12 +19,14 @@ export default class TwitterService
     async userTimeline(params)
     {
         const stringParamKey = JSON.stringify(params);
-
+        console.log(params);
         if(this.cacheService.has(stringParamKey))
         {
-            return await this.#parseTwitterJson(this.cacheService.get(stringParamKey));
+            console.log('hit');
+            return await this.cacheService.get(stringParamKey);
         }
         const tweets = await this.client.get('statuses/home_timeline', params);
+        console.log('no hit');
         const parsedTweets = this.#parseTwitterJson(tweets);
         this.cacheService.set(stringParamKey,parsedTweets);
         return parsedTweets;
@@ -32,9 +34,10 @@ export default class TwitterService
 
     #parseTwitterJson(obj)
     {
+        console.log('parsed');
         return obj.map((o) => { return {
             created_at: o.created_at,
-            id: o.id,
+            id: o.id_str, // use string id because of js not having 64 bit integers 
             text: o.text,
             ...(Object.keys((((o || {}).extended_entities || {})).media || {}).length > 0 ? { // check if extended_entities.media is not undefined
                 media : {
@@ -44,7 +47,9 @@ export default class TwitterService
                         video : {
                             ...(o.extended_entities.media[0].video_info.variants.sort((a,b) => b.bitrate - a.bitrate)[0])
                         }
-                    } : '' )
+                    } : '' ),
+                    sizes: o.extended_entities.media[0].sizes.small
+                
                 }
             } : '' ) ,
             user : o.user.screen_name
