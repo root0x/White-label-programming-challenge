@@ -19,6 +19,7 @@ interface props
 const VideoComponent = styled.video`
     padding-bottom: 10px;
     border-radius: 5px 5px 0 0;
+    width: 100%;
 `
 
 const video : React.FC<props> = ({video}) =>

@@ -3,7 +3,7 @@ import useWindowSize from '../hooks/useWindowSize';
 import {
     Box, 
     Heading,
-    Flex, 
+    Text, 
     Link,
     Image,
 } from '@chakra-ui/react';
@@ -34,6 +34,9 @@ interface props
     }
 }
 
+// regex to test if string is a url
+const regex = /(?=(?:\b(?:(?:[a-z]+:)?\/\/)(?:\S+(?::\S*)?@)?(?:localhost|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[\/?#]\S*)?\b))/
+
 const Tweet : React.FC<props> = ({tweet}) =>  {
     
     return (
@@ -59,12 +62,16 @@ const Tweet : React.FC<props> = ({tweet}) =>  {
                 <Video video={tweet.media}/>
             }
             <Box padding={['15px','30px']}>
-                <Heading size='md' paddingBottom='10px'>{tweet.text}</Heading>
-                    <Heading size='sm'>
+                <Heading size='md' paddingBottom='10px'>
+                    {tweet.text.split(regex).map(o =>  // extract hyperlinks from tweets                        
+                        regex.test(o) ? <Link href={o}>{o}</Link> : o
+                    )}
+                </Heading>
+                    <Heading size='sm' fontWeight='bold' color='greyHover'>
                         <Link href={'https://twitter.com/' + tweet.user}>
                             @{tweet.user}
                         </Link>
-                        </Heading>
+                    </Heading>
             </Box>
         </Box>
     )
