@@ -1,5 +1,5 @@
 import CacheService from './cacheService';
-import Twitter from 'twitter';
+import Twitter from './twitterClient';
 
 export default class TwitterService 
 {
@@ -19,14 +19,14 @@ export default class TwitterService
     async userTimeline(params)
     {
         const stringParamKey = JSON.stringify(params);
-        console.log(params);
         if(this.cacheService.has(stringParamKey))
         {
             console.log('hit');
             return await this.cacheService.get(stringParamKey);
         }
         const tweets = await this.client.get('statuses/home_timeline', params);
-        console.log('no hit');
+        // console.log(tweets);
+        // console.log('no hit');
         const parsedTweets = this.#parseTwitterJson(tweets);
         this.cacheService.set(stringParamKey,parsedTweets);
         return parsedTweets;
