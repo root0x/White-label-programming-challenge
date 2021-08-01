@@ -63,8 +63,8 @@ const Tweet : React.FC<props> = ({tweet}) =>  {
             }
             <Box padding={['15px','30px']}>
                 <Heading size='md' paddingBottom='10px'>
-                    {tweet.text.split(regex).map(o =>  // extract hyperlinks from tweets                        
-                        regex.test(o) ? <Link href={o}>{o}</Link> : o
+                    {tweet.text.split(regex).map((o, index) =>  // extract hyperlinks from tweets                        
+                        regex.test(o) ? <Link key={index} href={o}>{o}</Link> : o
                     )}
                 </Heading>
                     <Heading size='sm' fontWeight='bold' color='greyHover'>
