@@ -18,9 +18,9 @@ module.exports = {
         index: '',
         historyApiFallback: true,
         proxy: {'/api': {
-            target :'http://localhost:3000',
-            pathRewrite: { '^/api': '' },
-        }
+                target :'http://localhost:3000',
+                pathRewrite: { '^/api': '' },
+            }
         },
     },
     devtool: 'source-map',

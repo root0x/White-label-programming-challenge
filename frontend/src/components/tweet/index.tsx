@@ -42,7 +42,11 @@ const Tweet : React.FC<props> = ({tweet}) =>  {
     return (
         <Box
             margin='10px'
-            width='100%'
+            sx={{
+                '@media (min-width: 650px)' : {
+                    width: '100%'
+                }
+            }}
             border='1px solid lightGrey2'
             borderRadius='5px'
             bg='white'
