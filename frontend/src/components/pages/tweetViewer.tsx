@@ -26,10 +26,7 @@ const getMaxId = (tweets : any) =>
 
 const tweetViewer = () => {
     const ref= useRef(null);
-    // const data = useState(origData)
-    const [count, setCount] = useState(0);
     const [isLoading, setLoading] = useState(true);
-    const [isLoadingMore, setLoadingMore] = useState(false);
     const isBottomVisible = useIntersectionObserver(ref,{threshold: 0.5}, false);
     const [tweets,setTweets] = useState<any[]>([]);
     const [maxId,setMaxId] = useState<string|undefined>(undefined);
@@ -59,13 +56,13 @@ const tweetViewer = () => {
           console.log('fire');
           fetchData();
         }
-        isBottomVisible && setCount(count + 1);
       }, [isBottomVisible]);
     
 
     return (
         <Box
             bg='lightGrey'
+            as='main'
         >
             <Heading as='h1' textAlign='center' 
             fontSize={{base: '2xl', md: '5xl', lg: '6xl'}} 
@@ -80,7 +77,18 @@ const tweetViewer = () => {
                 ))}
 
         </Masonry>
-        <Box ref={ref} position='absolute' top={isLoading ? '0px' : bottomOffset} width='100%' height='20px'></Box>
+        <Box ref={ref} position='absolute' 
+        bottom={isLoading ? '0px' : '500px'}
+        // have to use sx attribute because of non standardized breakpoint
+        sx={{
+            
+            '@media (min-width: 650px) ' : {
+              top: isLoading ? '0px' : bottomOffset,
+              bottom: 'unset'
+            }
+        }}
+        // top={{base: '200px', '1024px' : isLoading ? '0px' : bottomOffset}} 
+        width='100%' height='20px'></Box>
         </Box>
     )
 }
