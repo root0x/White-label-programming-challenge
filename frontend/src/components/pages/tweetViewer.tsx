@@ -27,13 +27,14 @@ const getMaxId = (tweets : any) =>
 const tweetViewer = () => {
     const ref= useRef(null);
     const [isLoading, setLoading] = useState(true);
+    const [isLoadingMore, setLoadingMore] = useState(false);
     const isBottomVisible = useIntersectionObserver(ref,{threshold: 0.5}, false);
     const [tweets,setTweets] = useState<any[]>([]);
     const [maxId,setMaxId] = useState<string|undefined>(undefined);
     const [bottomOffset, setBottomOffset] = useState<number>();
     const fetchData = async() => 
     {
-        
+        setLoadingMore(true)
         const tempTweets = await getTweets(maxId);
         setTweets([
             ...tweets,
@@ -41,6 +42,7 @@ const tweetViewer = () => {
         // console.log(tweets);
         setMaxId(getMaxId(tempTweets));
         setLoading(false);
+        setLoadingMore(false);
         // work out height of smallest column and place observer div to be 250px above that
         // this is so that the new tweets load before the user reaches the end
         setBottomOffset(parseInt(Array.from(document.querySelectorAll('.my-masonry-grid_column')).map((elem) => 
@@ -51,7 +53,7 @@ const tweetViewer = () => {
       }, []);
 
     useEffect(() => {
-      if(!isLoading)
+      if(!isLoading && !isLoadingMore)
       {
           console.log('fire');
           fetchData();
