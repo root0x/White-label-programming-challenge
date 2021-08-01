@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import crypto from 'crypto';
-import uuid from 'uuid';
-import oauthSignature from 'oauth-signature';
+
 export default class TwitterClient
 {
     #credentials = {};

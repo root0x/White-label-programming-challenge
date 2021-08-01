@@ -76,7 +76,7 @@ const tweetViewer = () => {
             columnClassName="my-masonry-grid_column"
         >
                 {!isLoading && tweets.map((tweet,index) => (
-                <Tweet key={index} tweet={tweet}/>
+                    <Tweet key={tweet.id} tweet={tweet}/>
                 ))}
 
         </Masonry>

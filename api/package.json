@@ -15,5 +15,8 @@
     "express": "^4.17.1",
     "node-cache": "^5.1.2",
     "nodemon": "^2.0.12"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.12"
   }
 }

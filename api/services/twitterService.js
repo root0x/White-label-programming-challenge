@@ -27,15 +27,14 @@ export default class TwitterService
         const tweets = await this.client.get('statuses/home_timeline', params);
         // console.log(tweets);
         // console.log('no hit');
-        const parsedTweets = this.#parseTwitterJson(tweets);
+        const parsedTweets = await this.#parseTwitterJson(tweets);
         this.cacheService.set(stringParamKey,parsedTweets);
         return parsedTweets;
     }
 
-    #parseTwitterJson(obj)
+    async #parseTwitterJson(obj)
     {
-        console.log('parsed');
-        return obj.map((o) => { return {
+        return await obj.map((o) => { return {
             created_at: o.created_at,
             id: o.id_str, // use string id because of js not having 64 bit integers 
             text: o.text,
@@ -45,7 +44,13 @@ export default class TwitterService
                     imageUrl: o.extended_entities.media[0].media_url_https,
                     ...(o.extended_entities.media[0].type === 'video' ? {
                         video : {
-                            ...(o.extended_entities.media[0].video_info.variants.sort((a,b) => b.bitrate - a.bitrate)[0])
+                            ...(o.extended_entities.media[0].video_info.variants.sort((a,b) => {
+                                // sort application/x-mpegURL to end of array because not viewable in browser
+                                // sort by highest bitrate
+                                if(a.content_type === 'application/x-mpegURL') return 1;
+                                if(b.content_type === 'application/x-mpegURL') return -1;
+                                return b.bitrate - a.bitrate;
+                            })[0])
                         }
                     } : '' ),
                     sizes: o.extended_entities.media[0].sizes.small
@@ -53,9 +58,7 @@ export default class TwitterService
                 }
             } : '' ) ,
             user : o.user.screen_name
-        }})
+        }});
     }
-    
-
 }
 
